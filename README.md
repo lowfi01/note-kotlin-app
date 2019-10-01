@@ -30,4 +30,43 @@ Selecting Color Pallets
 
     https://colorhunt.co/
 
+Class Comparison between Kotlin & Java
+
+    All files must be a class.  - Java
+    Kotlin defines constructor beside the class Name - Kotlin
+
+            class JavaClass {
+                public JavaClass() {
+
+                }
+            }
+
+            class KotlinClass() {
+
+            }
+
+
+lateinit
+
+    Defers the assignment of a variable & implements nullable safety.
+
+        private var title: String?
+        private lateinit title: String
+
+
+Getter & Setters in kotlin
+
+    Kotlin automatically generates Setters and getter.
+
+
+data class ClassName
+
+    Adding data keyword to class will automatically generate generators in the background
+
+                equals(), hashCode(), toString()
+
+
+
+
+
 

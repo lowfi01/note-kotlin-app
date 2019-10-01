@@ -35,9 +35,23 @@ public class NavigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+
         mTextMessage = findViewById(R.id.message);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        Tag tag = new Tag(
+                "High Priority",
+                R.color.colorAccent
+        );
+
+        Task task = new Task(
+                "Get Groceries"
+        );
+
+        String s = task.getTitle(); // getter is automatically generated.
+
     }
 
 }
