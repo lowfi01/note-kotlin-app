@@ -10,25 +10,26 @@ import android.widget.TextView;
 public class NavigationActivity extends AppCompatActivity {
     private TextView mTextMessage;
 
+    // create Navigation listener
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
+        // Call back, on click check for id of menu items (bottom_nav_menu.xml), Assign text
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                case R.id.navigation_tasks:
+                    mTextMessage.setText(R.string.title_task);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_notes:
+                    mTextMessage.setText(R.string.title_note);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
+
             }
             return false;
         }
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
