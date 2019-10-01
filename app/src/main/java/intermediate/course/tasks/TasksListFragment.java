@@ -1,4 +1,4 @@
-package intermediate.course.notes;
+package intermediate.course.tasks;
 
 
 import android.os.Bundle;
@@ -11,13 +11,14 @@ import android.view.ViewGroup;
 
 import intermediate.course.R;
 
-public class NotesListFragment extends Fragment {
-       public NotesListFragment() {
+
+public class TasksListFragment extends Fragment {
+    public TasksListFragment() {
         // Required empty public constructor
     }
 
-    public static NotesListFragment newInstance() {
-        NotesListFragment fragment = new NotesListFragment();
+    public static TasksListFragment newInstance() {
+        TasksListFragment fragment = new TasksListFragment();
         return fragment;
     }
 
@@ -30,7 +31,7 @@ public class NotesListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notes_list, container, false);
+        return inflater.inflate(R.layout.fragment_tasks_list, container, false);
     }
 
 }

@@ -3,7 +3,10 @@ package intermediate.course.navigation
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import intermediate.course.R
+import intermediate.course.notes.NotesListFragment
+import intermediate.course.tasks.TasksListFragment
 import kotlinx.android.synthetic.main.activity_navigation.*
 
 class NavigationActivity : AppCompatActivity() {
@@ -13,11 +16,11 @@ class NavigationActivity : AppCompatActivity() {
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_tasks -> {
-                    messageTextView.setText(R.string.title_task)
+                    replaceFragment(TasksListFragment.newInstance())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_notes -> {
-                    messageTextView.setText(R.string.title_note)
+                    replaceFragment(NotesListFragment.newInstance())
                     return@OnNavigationItemSelectedListener true
                 }
             }
@@ -30,7 +33,13 @@ class NavigationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_navigation)
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        messageTextView.text = getString(R.string.title_task)
+    }
+
+
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentHolder, fragment)
+            .commit()
     }
 
 }
