@@ -80,6 +80,25 @@ Add Constraint & Margins using XML
      android:layout_marginTop="16dp"   // marg - top margin
 
 
+Companion objects instead of static
+
+        In the Java programming language, the keyword static indicates that the particular member belongs to a type itself, rather than to an instance of that type.
+        https://www.baeldung.com/java-static
+
+        public static NotesListFragment newInstance() {
+            NotesListFragment fragment = new NotesListFragment();
+            return fragment;
+        }
+
+        companion object {
+
+            fun newInstance(): NotesListFragment {
+                return NotesListFragment()
+            }
+        }
+
+
+
 Fragments
 
    https://developer.android.com/guide/components/fragments
