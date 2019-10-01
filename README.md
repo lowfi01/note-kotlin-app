@@ -1,1 +1,0 @@
-# note-kotlin-app
