@@ -34,6 +34,7 @@ Class Comparison between Kotlin & Java
 
     All files must be a class.  - Java
     Kotlin defines constructor beside the class Name - Kotlin
+    Kotlin can have default types declared in the constructor - Kotlin
 
             class JavaClass {
                 public JavaClass() {
@@ -41,10 +42,9 @@ Class Comparison between Kotlin & Java
                 }
             }
 
-            class KotlinClass() {
+            class KotlinClass(val s: String = "default value") {
 
             }
-
 
 lateinit
 

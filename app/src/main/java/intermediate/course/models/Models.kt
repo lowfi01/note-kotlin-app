@@ -1,6 +1,4 @@
-package intermediate.course
-
-import android.accounts.AuthenticatorDescription
+package intermediate.course.models
 
 //public class Task {
 //    public String title;
