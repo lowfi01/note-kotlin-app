@@ -5,27 +5,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import intermediate.course.R
+import intermediate.course.foundations.BaseRecyclerAdapter
 import intermediate.course.models.Task
 import kotlinx.android.synthetic.main.item_task.view.*
 
+// Convert construct from val to param by removing val
 class TaskAdapter(
-    private val taskList: MutableList<Task> = mutableListOf()  // default list for member variable of taskList automatically generated
-): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+   taskList: MutableList<Task> = mutableListOf()  // default list for member variable of taskList automatically generated
+): BaseRecyclerAdapter<Task>(taskList) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent,false))
     }
 
-    override fun getItemCount(): Int = taskList.count()
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        // CAST holder: RecyclerView.ViewHolder to type of viewholder
-        (holder as ViewHolder).onBind(taskList[position])
-    }
-
-    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        fun onBind(task: Task) {
-            view.titleView.text = task.title
+    // Convert construct from val to param by removing val
+    class ViewHolder(view: View) : BaseViewHolder<Task>(view) {
+        override fun onBind(data: Task) {
+            view.titleView.text = data.title
         }
     }
 }

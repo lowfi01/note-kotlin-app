@@ -175,7 +175,7 @@ Recycler View
         - Considered to be a more advanced method of in comparison to list view
         - Performance improvements
         - Horizontal view scrolling implemented by default
-        - Layoutmanagers, allow for multiple columns
+        - LayoutManager, allow for multiple columns
             - linearLayoutManager - list
             - GridLayoutManager - Multiple column list
         - Enforces ViewHolder pattern
@@ -197,3 +197,50 @@ Recycler View
 
         - Adapters
             Defines how we want to populate our lists
+
+Add Abstraction to Adapters  // BaseRecyclerAdapter
+
+    Original Note Adapter
+            class NoteAdapter(
+                private val noteList: MutableList<Note> = mutableListOf()
+            ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+                override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+                    ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false))
+
+                override fun getItemCount(): Int = noteList.size
+
+                override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+                    (holder as ViewHolder).onBind(noteList[position])
+                }
+
+                class ViewHolder (val view: View) : RecyclerView.ViewHolder(view) {
+
+                    fun onBind(note: Note) {
+                        view.apply {
+                            descriptionView.text = note.description
+                        }
+                    }
+                }
+
+            }
+
+    Abstracted Note Adapter
+
+            class NoteAdapter(
+                noteList: MutableList<Note> = mutableListOf()
+            ) : BaseRecyclerAdapter<Note>(noteList) {
+
+                override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+                    ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false))
+
+                class ViewHolder (view: View) : BaseViewHolder<Note>(view) {
+                    override fun onBind(data: Note) {
+                        view.apply {
+                            descriptionView.text = data.description
+                        }
+                    }
+
+                }
+
+            }
