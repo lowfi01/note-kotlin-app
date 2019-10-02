@@ -33,6 +33,7 @@ class NavigationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_navigation)
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
+        replaceFragment(TasksListFragment.newInstance())
     }
 
 

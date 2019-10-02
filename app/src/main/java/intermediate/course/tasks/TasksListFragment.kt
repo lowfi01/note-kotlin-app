@@ -8,11 +8,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import intermediate.course.R
+import intermediate.course.models.Task
+import kotlinx.android.synthetic.main.fragment_tasks_list.*
 
 
 class TasksListFragment : Fragment() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +28,24 @@ class TasksListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tasks_list, container, false)
+    }
+
+    // Right click, generate > override methods > onViewCreated
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // determine here if the fragment has been created
+
+        // RecyclerViewTask = fragment_tasks_list recycler view item id
+        RecyclerViewTask.layoutManager = LinearLayoutManager(context)
+        val adapter = TaskAdapter(mutableListOf(
+            Task("Testing 1"),
+            Task("Testing 2"),
+            Task("Testing 3"),
+            Task("Testing 4")
+        ))
+        RecyclerViewTask.adapter = adapter
+
+
     }
 
     companion object {

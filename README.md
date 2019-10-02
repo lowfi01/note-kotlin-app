@@ -167,3 +167,33 @@ Fragment, How to communicate between Fragment and Activity?
                 }
 
 
+Recycler View
+
+    https://developer.android.com/guide/topics/ui/layout/recyclerview
+
+    Method to display a large set of scrolling data.
+        - Considered to be a more advanced method of in comparison to list view
+        - Performance improvements
+        - Horizontal view scrolling implemented by default
+        - Layoutmanagers, allow for multiple columns
+            - linearLayoutManager - list
+            - GridLayoutManager - Multiple column list
+        - Enforces ViewHolder pattern
+            - View holders are assigned a single item with a view
+                "defines presentation within the view holder, dependent on x information given"
+                - responsible for which views need to be bonded
+                    - which views to use
+                    - which views to re-use
+                    - which views should be created
+                    - bonded views do not need to be re-created (DRY)
+                - what position view is within the list of views (consider array elements)
+
+        STEPS.
+          - define xml file  for view
+          - define view holder
+                -interacting with an said object
+                - how do we display that view that is defined with the object to the xml?
+          - Handling callbacks and user interactions
+
+        - Adapters
+            Defines how we want to populate our lists
