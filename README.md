@@ -328,3 +328,54 @@ View inflation attachToRoot true / false
                 - will return the inflated view
                 - Does not add View as child so it will not receive events
                 - Touch events can be added later with parent.addView()
+                
+                
+Boolean Logic Crash Course!
+
+            Add: descriptionView.setPaintFlags(descriptionView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            
+            Remove: descriptionView.setPaintFlags(descriptionView.getPaintFlags() & ~(Paint.STRIKE_THRU_TEXT_FLAG));
+            
+            Why does this work?
+            
+                    First, let's think of paint flags as a series of bits. A bit is either a 1 (true) or a 0 (false) and it can be flipped to enable a "state" or "flag".
+                    
+                    So let's assume that the default "state" for paint flags of a text view is the follow sequence of bits "10101000" (this is purely random and for educational purposes).
+                    
+                    Similar to how we use arithmetic operations in base 10 numbers (ie 5 + 2 = 7 with plus being an arithmetic operator), we can use boolean operations in base 2.
+                    
+                    1) One operation is the bitwise OR ( | ). It compares 2 bits and if EITHER ONE OR BOTH are true, then the result is true.
+                    
+                    For example (1001 | 1010) = 1011 because there was at least one "true" value in the 1st, 2nd, and 4th bit from the right.
+                    
+                    2) One operation is the bitwise AND ( & ). It compares 2 bits and if BOTH are true, then the result is true.
+                    
+                    For example (1001 & 1010) = 1000 because only the 4th bit from the right is both 1 & 1 = 1.
+                    
+                    3) The final operation I will cover is the bitwise inverse (~). This takes 1 bit, and flips every value (true -> false, false -> true).
+                    
+                    For example ~(1010) = (0101) since everything is flipped from 1 to 0 and 0 to 1.
+            
+            
+            
+            Now going back to our default state of paint flags, what if the 2nd bit from the right was the flag which determines whether the text has a strike through or not? How can we use boolean operations to change that single bit while keeping everything else the same? This way, all the other properties will be the same except the strike through.
+            
+            The solution is this:
+            
+                    Paint.StrikeThrough = 00000010 (in our hypothetical example)
+                    
+                    10101000 | 00000010 => 10101010
+                    
+                    Notice how everything is the same except the single bit we flipped. This is only possible using bitwise OR and the single flag!
+                    
+                    How about removing it? Now, our current flag state is 10101010.
+                    
+                    If Paint.StrikeThrough was the series of bits above, ~(Paint.StrikeThrough) = 11111101
+                    
+                    10101010 & 11111101 = 10101000.
+                    
+                    Notice how everything is the same except the single bit we flipped. This is only possible using bitwise AND and the inverse of the single flag!
+                    
+            
+            
+            There are numerous more cool things that we can do with boolean operations! However seeing as this is not an electrical engineering circuits course or a low level programming course, I just wanted to give you a very very fast intro into the world of boolean logic and why we use bitwise or vs bitwise and for the various operations.

@@ -34,7 +34,7 @@ class NotesListFragment : Fragment() {
         RecyclerViewNote.layoutManager = LinearLayoutManager(context)
         val adapter = NoteAdapter(mutableListOf(
                 Note("Description 1"),
-                Note("Description 1"),
+                Note("Not another description qwqgwqwgqwgqwggqwgqwgqwgqwgqwgwqgqwgqwgqwgqwgqwgqwgqwg"),
                 Note("Description 1"),
                 Note("Description 1")
             ))
