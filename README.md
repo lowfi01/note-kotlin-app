@@ -1,5 +1,12 @@
 # note-kotlin-app
 
+Types 
+
+    - Unit  
+        Defines a type of void - Which is returns nothing, or is nothing...
+    - <T> 
+        Default decaliration of Generanic type, accepts any type, including Unit
+
 
 Include - Androidx (jetpack)  // current version of android studio includes this automatically
     - Androidx is a better package management system
