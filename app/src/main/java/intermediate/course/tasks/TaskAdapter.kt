@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import intermediate.course.R
 import intermediate.course.foundations.BaseRecyclerAdapter
 import intermediate.course.models.Task
-import intermediate.course.views.TodoView
-import kotlinx.android.synthetic.main.item_task.view.*
+import intermediate.course.views.TaskView
 
 // Convert construct from val to param by removing val
 class TaskAdapter(
@@ -22,18 +21,20 @@ class TaskAdapter(
     // Convert construct from val to param by removing val
     class ViewHolder(view: View) : BaseViewHolder<Task>(view) {
         override fun onBind(data: Task) {
-            view.titleView.text = data.title
-            
-            // setup custom view & assign values
-            data.todos.forEach { todo ->
-                val todoView =  // Inflate View of view_todo & cast it to type of TodoView (custom view created)
-                    (LayoutInflater.from(view.context).inflate(R.layout.view_todo, view.todoContainer, false) as TodoView)
-                        .apply {
-                            initView(todo)
-                        }
+            (view as TaskView).initView(data)
 
-                view.todoContainer.addView(todoView)  // Programmatically add view as a child of LinearLayout @todoContainer
-            }
+//            view.titleView.text = data.title
+//
+//            // setup custom view & assign values
+//            data.todos.forEach { todo ->
+//                val todoView =  // Inflate View of view_todo & cast it to type of TodoView (custom view created)
+//                    (LayoutInflater.from(view.context).inflate(R.layout.view_todo, view.todoContainer, false) as TodoView)
+//                        .apply {
+//                            initView(todo)
+//                        }
+//
+//                view.todoContainer.addView(todoView)  // Programmatically add view as a child of LinearLayout @todoContainer
+//            }
         }
     }
 }
