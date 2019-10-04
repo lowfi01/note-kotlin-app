@@ -1,5 +1,6 @@
 package intermediate.course.tasks
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,19 @@ class TaskAdapter(
                         .apply {
                             descriptionView.text = todo.description
                             completedCheckBox.isChecked = todo.isComplete
+                            if (todo.isComplete) {
+                                descriptionView.paintFlags = descriptionView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                            }
+                            // add Listener to view
+                            completedCheckBox.setOnCheckedChangeListener { button, isChecked ->
+                                // implement callback
+
+                                if (isChecked){
+                                    descriptionView.paintFlags = descriptionView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG// strike text
+                                } else {
+                                    descriptionView.paintFlags = descriptionView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv() // invert strike
+                                }
+                            }
                         }
 
                 // Programmatically add view as a child of LinearLayout @todoContainer
