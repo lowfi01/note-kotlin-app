@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<intermediate.course.views.TodoView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
@@ -33,4 +34,4 @@
             android:layout_marginStart="@dimen/item_margin_default"
             android:layout_marginEnd="@dimen/item_margin_default"
             />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</intermediate.course.views.TodoView>
