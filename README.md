@@ -244,3 +244,87 @@ Add Abstraction to Adapters  // BaseRecyclerAdapter
                 }
 
             }
+
+Programatically Add Custom Views
+
+
+        Task Recycler View TaskAdapter.kt
+
+            class TaskAdapter(
+               taskList: MutableList<Task> = mutableListOf()  // default list for member variable of taskList automatically generated
+            ): BaseRecyclerAdapter<Task>(taskList) {
+
+                override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+                    return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent,false))
+                }
+
+                class ViewHolder(view: View) : BaseViewHolder<Task>(view) {
+                    override fun onBind(data: Task) {
+                        view.titleView.text = data.title  // assign value to textView
+
+                        // setup custom view & assign values
+                        data.todos.forEach {todo ->
+                            // inflate each todo and programatically attached it to a parent (todoContainer > view_todo)
+                            val todoView = LayoutInflater.from(view.context).inflate(R.layout.view_todo, view.todoContainer, false)
+
+                            // todoView holds our inflated view @view_todo
+                            todoView.apply{
+                                // now assign the values we want to the checkbox & textView found within @view_todo
+                                descriptionView.text = todo.description
+
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        Insert this view item_note.xml
+
+            ?xml version="1.0" encoding="utf-8"?>
+            <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/simple_item_view_height"
+                    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+                <TextView
+                        android:id="@+id/descriptionView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/item_margin_default"
+                        android:layout_marginTop="@dimen/item_margin_default"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        Conceptually we will be adding children to this LinearLayout using the code above
+
+            <LinearLayout
+                    android:id="@+id/todoContainer"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/titleView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    >
+
+                     // Insert - TextView id:descriptionView (found view_todo.xml)
+
+            </LinearLayout>
+
+View inflation attachToRoot true / false
+
+           https://stackoverflow.com/questions/12567578/what-does-the-layoutinflater-attachtoroot-parameter-mean
+           true:
+                - will return the parent view
+                - Add view as child of ViewGroup, which allows for touch events
+                - Auto added to parent (sometimes might not want this!)
+           false:
+                - will return the inflated view
+                - Does not add View as child so it will not receive events
+                - Touch events can be added later with parent.addView()

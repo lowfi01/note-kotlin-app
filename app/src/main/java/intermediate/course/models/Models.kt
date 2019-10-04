@@ -13,7 +13,7 @@ package intermediate.course.models
 // Note - @JvmOverloads constructor is only required if your call this kt file in java
 data class Task @JvmOverloads constructor(
      var title: String,
-     val todo: MutableList<Todo> = mutableListOf(), // assign empty mutable list, referring by type
+     val todos: MutableList<Todo> = mutableListOf(), // assign empty mutable list, referring by type
      var tag: Tag? = null // can be null & default is set to null
 ) { // body is not required
     //Declare this within the constructor is enough
@@ -22,7 +22,7 @@ data class Task @JvmOverloads constructor(
 
 data class Todo(
      var description: String,
-     var isComplete: Boolean
+     var isComplete: Boolean = false
 )
 
 data class Note(
